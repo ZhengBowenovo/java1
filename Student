@@ -1,0 +1,137 @@
+public class Student {
+    private String studentID;
+    private String studentName;
+    private String[] extraActivities;
+
+    // Constructor
+    public Student(String studentID, String studentName, int numExtraActivities) {
+        this.studentID = studentID;
+        this.studentName = studentName;
+        this.extraActivities = new String[numExtraActivities];
+    }
+
+    // Getter and setter methods for studentID
+    public String getStudentID() {
+        return studentID;
+    }
+
+    public void setStudentID(String studentID) {
+        this.studentID = studentID;
+    }
+
+    // Getter and setter methods for studentName
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    // Getter and setter methods for extraActivities
+    public String[] getExtraActivities() {
+        return extraActivities;
+    }
+
+    public void setExtraActivities(String[] extraActivities) {
+        this.extraActivities = extraActivities;
+    }
+
+    // Method to add extra activities
+    public void addExtraActivity(int numActivities, String activity) {
+        if (numActivities <= extraActivities.length) {
+            extraActivities[numActivities - 1] = activity;
+        } else {
+            System.out.println("Number of activities exceeds the array size.");
+        }
+    }
+
+    // Method to display student details
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Student ID: ").append(studentID).append("\n");
+        sb.append("Student Name: ").append(studentName).append("\n");
+        sb.append("Extra Activities: ");
+        for (String activity : extraActivities) {
+            if (activity != null) {
+                sb.append(activity).append(", ");
+            }
+        }
+        return sb.toString();
+    }
+}
+
+
+
+
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+
+        Scanner reader = new Scanner(System.in);
+
+        System.out.println("Enter your ID:" + "\n");
+        String id = reader.nextLine();
+
+        System.out.println("Enter your name:" + "\n");
+        String name = reader.nextLine();
+        int choice;
+
+        do{
+            System.out.println("Type 1, if you want to search by ID" + "\n");
+            System.out.println("Type 2, if you want to search by name" + "\n");
+            System.out.println("Type 3, if you want to add students:" + "\n");
+            System.out.println("Type 4 to exit:" + "\n");
+            choice = reader.nextInt();
+            reader.nextLine();
+
+            Student student = new Student(id, name);
+            System.out.println(student);
+
+
+            switch(choice){
+                case 1:
+                System.out.println("Please enter the student ID" + "\n");
+                String studentID = reader.nextLine();
+                student.searchByID(studentID);
+                    break;
+                case 2:
+                System.out.println("Please enter the student name" + "\n");
+                String studentName = reader.nextLine();
+                student.searchByName(studentName);
+                    break;
+                case 3:
+                System.out.println("How many students do you want to add?" + "\n");
+                int entries = reader.nextInt();
+                reader.nextLine();
+                Student[] students = new Student[entries];
+                for(int i=0; i<students.length; i++){
+                    students[i] = new Student();
+                    students[i].addStudents(i+1);
+                }
+                System.out.println("\n" + "Here are the new students you added" + "\n");
+                for(int i=0; i<students.length; i++){
+                    students[i].displayStudents(i+1);
+                }
+
+                    break;
+                case 4:
+                    break;
+                default:
+                    System.out.println("Invalid choice" + "\n");
+            }
+        } while(choice != 3);
+
+        reader.close();
+        
+    }
+    
+}
+
+
+
+
+
