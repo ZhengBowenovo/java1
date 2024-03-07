@@ -1,0 +1,77 @@
+import java.util.ArrayList;
+import java.util.Date;
+
+public class Event {
+    private String eventID;
+    private String eventName;
+    private String eventVenue;
+    private Date eventDate;
+    private ArrayList<String> eventAttendees;
+
+    public Event(String eventID, String eventName, String eventVenue, Date eventDate) {
+        this.eventID = eventID;
+        this.eventName = eventName;
+        this.eventVenue = eventVenue;
+        this.eventDate = eventDate;
+        this.eventAttendees = new ArrayList<>();
+    }
+
+    // Getters and Setters (same as before)
+
+    // Method to add attendee (same as before)
+    public void addAttendee(String attendee) {
+        eventAttendees.add(attendee);
+    }
+
+    // Method to remove attendee (same as before)
+    public void removeAttendee(String attendee) {
+        eventAttendees.remove(attendee);
+    }
+
+    // Method to find a single attendee (same as before)
+    public boolean findAttendee(String attendee) {
+        return eventAttendees.contains(attendee);
+    }
+
+    // Method to display total number of attendees (same as before)
+    public int getTotalAttendees() {
+        return eventAttendees.size();
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "eventID='" + eventID + '\'' +
+                ", eventName='" + eventName + '\'' +
+                ", eventVenue='" + eventVenue + '\'' +
+                ", eventDate=" + eventDate +
+                ", eventAttendees=" + eventAttendees +
+                '}';
+    }
+}
+
+
+
+
+
+
+
+import java.util.Date;
+
+public class Main {
+    public static void main(String[] args) {
+        // Example usage
+        Event event = new Event("E001", "Birthday Party", "123 Main Street", new Date());
+        event.addAttendee("Alice");
+        event.addAttendee("Bob");
+        event.addAttendee("Charlie");
+
+        System.out.println("Event Details:");
+        System.out.println(event);
+        System.out.println("Total Attendees: " + event.getTotalAttendees());
+    }
+}
+
+
+
+
