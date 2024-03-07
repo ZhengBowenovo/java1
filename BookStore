@@ -1,0 +1,174 @@
+package prog2.spring2024.exercise2;
+
+
+import java.util.Scanner;
+
+
+enum BookDetails {
+    BOOK1(1, "Book1", "Author1", 200, "Genre1", 4.5, 2020, "Publisher1", 25.0),
+    BOOK2(2, "Book2", "Author2", 300, "Genre2", 4.0, 2019, "Publisher2", 30.0),
+    
+
+    private final int bookID;
+    private final String bookName;
+    private final String bookAuthor;
+    private final int bookPages;
+    private final String bookGenre;
+    private final double bookRating;
+    private final int bookPublishedYear;
+    private final String bookPublisher;
+    private final double bookPrice;
+
+    BookDetails(int bookID, String bookName, String bookAuthor, int bookPages,
+                String bookGenre, double bookRating, int bookPublishedYear,
+                String bookPublisher, double bookPrice) {
+        this.bookID = bookID;
+        this.bookName = bookName;
+        this.bookAuthor = bookAuthor;
+        this.bookPages = bookPages;
+        this.bookGenre = bookGenre;
+        this.bookRating = bookRating;
+        this.bookPublishedYear = bookPublishedYear;
+        this.bookPublisher = bookPublisher;
+        this.bookPrice = bookPrice;
+    }
+
+ 
+    public int getBookID() {
+        return bookID;
+    }
+
+    public String getBookName() {
+        return bookName;
+    }
+
+    public String getBookAuthor() {
+        return bookAuthor;
+    }
+
+    public int getBookPages() {
+        return bookPages;
+    }
+
+    public String getBookGenre() {
+        return bookGenre;
+    }
+
+    public double getBookRating() {
+        return bookRating;
+    }
+
+    public int getBookPublishedYear() {
+        return bookPublishedYear;
+    }
+
+    public String getBookPublisher() {
+        return bookPublisher;
+    }
+
+    public double getBookPrice() {
+        return bookPrice;
+    }
+}
+
+
+class BookStore {
+    private BookDetails orderedBook;
+    private String orderDate;
+    private int orderID;
+    private double transactionAmount;
+    private String firstName;
+    private String lastName;
+    private String emailAddress;
+    private int userID;
+    private String orderType;
+
+    
+    public BookStore(String firstName, String lastName, String emailAddress) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+    }
+
+    
+    public void displayBookList() {
+        System.out.println("Book List:");
+        for (BookDetails book : BookDetails.values()) {
+            System.out.println(book.getBookID() + ". " + book.getBookName());
+        }
+    }
+
+    public BookDetails searchBook(int bookID) {
+        for (BookDetails book : BookDetails.values()) {
+            if (book.getBookID() == bookID) {
+                return book;
+            }
+        }
+        return null;
+    }
+
+    public void orderBook(int bookID, int choice) {
+        orderedBook = searchBook(bookID);
+        if (orderedBook != null) {
+            
+        } else {
+            System.out.println("Book not found.");
+        }
+    }
+
+    public void orderConfirmation() 
+    
+}                                
+
+
+
+
+
+
+
+
+
+package prog2.spring2024.exercise2;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter your first name: ");
+        String firstName = scanner.nextLine();
+        System.out.print("Enter your last name: ");
+        String lastName = scanner.nextLine();
+        System.out.print("Enter your email address: ");
+        String emailAddress = scanner.nextLine();
+
+        BookStore bookstore = new BookStore(firstName, lastName, emailAddress);
+
+       
+        bookstore.displayBookList();
+
+      
+        System.out.print("Enter the book ID you want to order: ");
+        int bookID = scanner.nextInt();
+        scanner.nextLine();  
+        System.out.print("Choose 1 to rent, 2 to purchase, or 3 to exit: ");
+        int choice = scanner.nextInt();
+
+        
+        bookstore.orderBook(bookID, choice);
+
+       
+        bookstore.orderConfirmation();
+
+        scanner.close();
+    }
+}
+
+
+
+
+
+
+
+
