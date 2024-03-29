@@ -16,24 +16,19 @@ public class Event {
         this.eventAttendees = new ArrayList<>();
     }
 
-    // Getters and Setters (same as before)
-
-    // Method to add attendee (same as before)
-    public void addAttendee(String attendee) {
+  
+    public void registerAttendee(String attendee) {
         eventAttendees.add(attendee);
     }
 
-    // Method to remove attendee (same as before)
-    public void removeAttendee(String attendee) {
+    public void cancelAttendance(String attendee) {
         eventAttendees.remove(attendee);
     }
 
-    // Method to find a single attendee (same as before)
-    public boolean findAttendee(String attendee) {
+    public boolean checkAttendance(String attendee) {
         return eventAttendees.contains(attendee);
     }
 
-    // Method to display total number of attendees (same as before)
     public int getTotalAttendees() {
         return eventAttendees.size();
     }
