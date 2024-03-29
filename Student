@@ -3,14 +3,12 @@ public class Student {
     private String studentName;
     private String[] extraActivities;
 
-    // Constructor
     public Student(String studentID, String studentName, int numExtraActivities) {
         this.studentID = studentID;
         this.studentName = studentName;
         this.extraActivities = new String[numExtraActivities];
     }
 
-    // Getter and setter methods for studentID
     public String getStudentID() {
         return studentID;
     }
@@ -19,7 +17,6 @@ public class Student {
         this.studentID = studentID;
     }
 
-    // Getter and setter methods for studentName
     public String getStudentName() {
         return studentName;
     }
@@ -28,7 +25,6 @@ public class Student {
         this.studentName = studentName;
     }
 
-    // Getter and setter methods for extraActivities
     public String[] getExtraActivities() {
         return extraActivities;
     }
@@ -37,7 +33,6 @@ public class Student {
         this.extraActivities = extraActivities;
     }
 
-    // Method to add extra activities
     public void addExtraActivity(int numActivities, String activity) {
         if (numActivities <= extraActivities.length) {
             extraActivities[numActivities - 1] = activity;
@@ -46,20 +41,6 @@ public class Student {
         }
     }
 
-    // Method to display student details
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Student ID: ").append(studentID).append("\n");
-        sb.append("Student Name: ").append(studentName).append("\n");
-        sb.append("Extra Activities: ");
-        for (String activity : extraActivities) {
-            if (activity != null) {
-                sb.append(activity).append(", ");
-            }
-        }
-        return sb.toString();
-    }
 }
 
 
@@ -69,7 +50,7 @@ public class Student {
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         Scanner reader = new Scanner(System.in);
 
@@ -80,7 +61,8 @@ public class Main {
         String name = reader.nextLine();
         int choice;
 
-        do{
+        Student student = new Student(id, name)；
+        do {
             System.out.println("Type 1, if you want to search by ID" + "\n");
             System.out.println("Type 2, if you want to search by name" + "\n");
             System.out.println("Type 3, if you want to add students:" + "\n");
@@ -88,34 +70,30 @@ public class Main {
             choice = reader.nextInt();
             reader.nextLine();
 
-            Student student = new Student(id, name);
-            System.out.println(student);
-
-
-            switch(choice){
+            switch (choice) {
                 case 1:
-                System.out.println("Please enter the student ID" + "\n");
-                String studentID = reader.nextLine();
-                student.searchByID(studentID);
+                    System.out.println("Please enter the student ID" + "\n");
+                    String studentID = reader.nextLine();
+                    student.searchByID(studentID);
                     break;
                 case 2:
-                System.out.println("Please enter the student name" + "\n");
-                String studentName = reader.nextLine();
-                student.searchByName(studentName);
+                    System.out.println("Please enter the student name" + "\n");
+                    String studentName = reader.nextLine();
+                    student.searchByName(studentName);
                     break;
                 case 3:
-                System.out.println("How many students do you want to add?" + "\n");
-                int entries = reader.nextInt();
-                reader.nextLine();
-                Student[] students = new Student[entries];
-                for(int i=0; i<students.length; i++){
-                    students[i] = new Student();
-                    students[i].addStudents(i+1);
-                }
-                System.out.println("\n" + "Here are the new students you added" + "\n");
-                for(int i=0; i<students.length; i++){
-                    students[i].displayStudents(i+1);
-                }
+                    System.out.println("How many students do you want to add?" + "\n");
+                    int entries = reader.nextInt();
+                    reader.nextLine();
+                    Student[] students = new Student[entries];
+                    for (int i = 0; i < students.length; i++) {
+                        students[i] = new Student();
+                        students[i].addStudents(i + 1);
+                    }
+                    System.out.println("\n" + "Here are the new students you added" + "\n");
+                    for (int i = 0; i < students.length; i++) {
+                        students[i].displayStudents(i + 1);
+                    }
 
                     break;
                 case 4:
@@ -123,14 +101,12 @@ public class Main {
                 default:
                     System.out.println("Invalid choice" + "\n");
             }
-        } while(choice != 3);
+        } while (choice != 4);
 
         reader.close();
         
     }
-    
 }
-
 
 
 
